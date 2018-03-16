@@ -1,15 +1,1 @@
-<div class="map-tools">
-	<button (click)="creat('mall')">新建Mall</button>
-	<button (click)="creat('floor')">新建Floor</button>
-	<button (click)="log()">打印当前日志</button>
-	<button (click)="draw($event,'Marker')">画点</button>
-	<button (click)="draw($event,'Rectangle')">画矩形</button>
-	<button (click)="draw($event,'Circle')">画圆</button>
-	<button (click)="draw($event,'Polygon')">画面</button>
-	<button (click)="save()">保存</button>
-	<div style="background-color:bisque;width:200px;height:200px;">
-		<ul>
-			<li *ngFor="let item of drawnItems;let i = index;trackBy:_leaflet_id;let isFirst=first;">{{isFirst?'XX大厦':('第'+i+'层,id为'+item._leaflet_id)}}</li>
-		</ul>
-	</div>
-</div>
+<!-- 可以自定义绘图和编辑按钮、操作 -->
