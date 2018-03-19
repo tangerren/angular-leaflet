@@ -1,0 +1,1 @@
+bash: rebuild: command not found

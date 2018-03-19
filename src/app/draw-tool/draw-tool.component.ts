@@ -3,9 +3,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FeatureGroup, Control, Draw } from 'leaflet';
 
 import 'leaflet-draw';
-import 'leaflet-geometryutil';
-import 'leaflet-snap';
-
 
 @Component({
     selector: 'draw-tool',
@@ -15,17 +12,19 @@ import 'leaflet-snap';
 export class DrawToolComponent implements OnInit {
 
     @Input() map: any;
+    drawnItems: FeatureGroup;	
     constructor() { }
 
     ngOnInit() {
-        const drawnItems = new FeatureGroup();
-        this.map.addLayer(drawnItems);
-        var drawControl = new Control.Draw({
+        this.drawnItems = new FeatureGroup();
+        this.map.addLayer(this.drawnItems);
+        this.map.addControl(new Control.Draw({
             edit: {
-                featureGroup: drawnItems
-            }
+               featureGroup: this.drawnItems
+           }
+        }));
+        this.map.on('draw:created', (event) => {
+            this.drawnItems.addLayer(event.layer);
         });
-        this.map.addControl(drawControl);
     }
-
 }
